@@ -1,0 +1,38 @@
+/* 
+app-header{
+    margin-bottom: 20px;
+} */
+
+/* router-outlet{
+    height: 80%;
+    
+} */
+
+
+/* app-tabs{ */
+    /* margin-top: auto; */
+    /* position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0; */
+    /* position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%; */
+/* } */
+
+#container{
+    height: 100svh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+main{
+    flex: 1;
+    overflow-y: scroll;
+}
+
+app-tabs{
+    margin-top: auto;
+}

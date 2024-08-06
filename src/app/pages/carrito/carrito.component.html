@@ -1,0 +1,83 @@
+<section>
+    @if(carroService.carrito.length !== 0) {
+        <div id="tarjetas-container" class="margen-chico">
+                        <div class="tarjeta-producto-container" *ngFor="let producto of carroService.carrito, index as i">
+                    
+                    <ng-container *ngIf="productosCarrito()[i]  && i >= 0 && i < this.productosCarrito().length ">
+                        
+                        <div id="izquierda" [ngStyle]="{'background-image': 'url(' + productosCarrito()[i].fotoUrl + ')'}" >
+                            <div id="iconos">
+                                <img *ngIf="productosCarrito()[i].esCeliaco" src="./../../../assets/icons/no_gluten.svg" alt="Apto Celiaco" sizes="" srcset="">
+                                <img *ngIf="productosCarrito()[i].esVegano" src="./../../../assets/icons/Vegetariano3.png" alt="Apto Vegetarianos" sizes="" srcset="">
+                            </div>
+                        </div>
+                        
+                        <div id="centro">
+                            <p class="negrita">{{productosCarrito()[i].nombre}}</p>
+                            <p *ngIf="producto.notas !==''">{{producto.notas}}</p>
+                            <app-contador-cantidad [cantidadInicial]="producto.cantidad" 
+                            (contadorCambiado)="cambiarCantidadProducto(producto.idProducto, $event )">
+                            </app-contador-cantidad>
+                        </div>
+                    
+                        <div id="derecha">
+                            <button id="borrar" (click)="eliminarProducto(producto.idProducto)"><img src="./../../../assets/icons/borrar.png" alt="" srcset=""></button>
+                            <p class="negrita">${{productosCarrito()[i].precio}}</p>
+                        </div>
+                    </ng-container>
+                </div>
+        </div>
+    } @else {
+        <h2>Carrito vacio</h2>
+    }
+    <div class="flex-center">
+        <a id="mas" [routerLink]="['/']">+</a>
+    </div>
+</section>
+    
+<section class="margen-chico" id="informacion">
+    <h3>Direccion de envio</h3>
+
+    <div class="flex-apart" id="envios-container">
+        @if(perfilService.perfil()){
+            <div>
+                <h4>{{perfilService.perfil()?.nombre}}</h4>
+                <p>{{perfilService.perfil()?.direccion}} - {{perfilService.perfil()?.telefono}}</p>
+                <p>{{perfilService.perfil()?.detalleEntrga}}</p>
+            </div>
+        } @else {
+            <p>Ingresá tus datos de envio</p>
+        }
+        <div>
+            <a [routerLink]="['/perfil']" routerLinkActive="">
+                <img src="./../../../assets/icons/lapiz.png" alt="Editar">
+            </a>
+        </div>
+    </div>
+    <div id="totales" class="flex-apart">
+        <div>
+            <p class="negritta">Subtotal</p>
+            <p>Delivery</p>
+            <p class="negrita">Total</p>
+        </div>
+        <div id="montos">
+            <p class="negrita">${{subtotal}}</p>
+            <p >${{this.configService.configuracion().costoEnvio}}</p>
+            <p class="negrita">${{total}}</p>
+        </div>
+    </div>
+    <div >
+        <button id="enviar" [disabled]="!perfilService.perfil() || carroService.carrito.length === 0" (click)="enviarMensaje()">Realizar pedido</button>
+    </div>
+</section>
+
+<dialog method="modal" #dialog>
+    <p>¿Pudiste realizar el pedido?</p>
+    <div>
+        <button (click)="finalizarPedido()"><span>Si</span><span>Reiniciar pedido</span></button>
+        <button (click)="editarPedido()"><span>No</span><span>Editar pedido</span></button>
+    </div>
+</dialog>
+
+
+

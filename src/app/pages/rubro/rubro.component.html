@@ -1,0 +1,10 @@
+<section>
+    <div id="contenedor-productos">
+        @for (produ of this.productos(); track produ.id){
+            <div>
+                <!-- <p>{{produ.nombre}}</p> -->
+                <app-tarjeta-producto [producto]="produ" [routerLink]="['/articulo', produ.id]"></app-tarjeta-producto>
+            </div>
+        }
+    </div>
+</section>

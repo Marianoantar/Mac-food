@@ -1,0 +1,53 @@
+#barra-busqueda{
+    display: flex;
+    align-items: center;
+    height: 30px;
+    background-color: var(--color_principal_atenuado);
+    border-radius: 25px;
+    margin: 20px 10%;
+    padding:5px 10px;
+}
+
+#barra-busqueda input{
+    width: 100%;
+    background-color: unset ;
+    border: unset;
+    font-size: large;
+}
+input:focus{
+    outline: none;
+}
+
+#apto{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.apto-container{
+    display: flex;
+    align-items: center;
+    height:25px;  
+    gap: 5px;  
+}
+
+img{
+    height: 100%;
+}
+
+#contenedor-productos{
+    margin: 20px;
+
+   display: flex; 
+   flex-direction: column;
+   gap: 15px
+}
+
+h2{
+    /* margin-top: 50px; */
+    color: var(--color_principal);
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    font-size: xx-large;
+    text-align: center;
+}

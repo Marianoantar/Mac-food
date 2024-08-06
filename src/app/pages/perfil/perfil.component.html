@@ -1,0 +1,37 @@
+<section>
+    <div *ngIf="perfilService.perfil() || perfil.nombre || perfil.direccion || perfil.telefono || perfil.detalleEntrga" id="iconoBorrar">
+        <img (click)="borrar()" src="./../../../assets/icons/borrar.png">
+    </div>
+    <div id="form-content">
+        <form #formulario="ngForm"  (ngSubmit)="guardarDatosPerfil()">
+            <div>
+                <label for="nombre">nombre</label>
+                <input type="text" name="nombre" id="nombre" [(ngModel)]="perfil.nombre" #nombre="ngModel" [minlength]="5" required>
+                <p class="error" *ngIf="nombre.invalid && nombre.touched">Ingrese un nombre válido</p>
+            </div>
+        
+            <div>
+                <label for="direccion">direccion</label>
+                <input type="text" name="direccion" id="direccion" [(ngModel)]="perfil.direccion" #direccion="ngModel" [minlength]="5" required>
+                <p class="error" *ngIf="direccion.invalid && direccion.touched">Ingrese una dirección válida</p>
+            </div>
+        
+            <div>
+                <label for="notas">notas</label>
+                <input type="text" name="notas" id="notas" [(ngModel)]="perfil.detalleEntrga" #notas="ngModel">
+                <!-- <p class="error" >Ingrese una notas válidas</p> -->
+            </div>
+        
+            <div>
+                <label for="telefono">telefono</label>
+                <input type="text" name="telefono" id="telefono" [(ngModel)]="perfil.telefono" #telefono="ngModel" [minlength]="5" required>
+                <p class="error" *ngIf="telefono.invalid && telefono.touched">Ingrese un número de teléfono válido</p>
+            </div>
+        
+            <button type="submit" [disabled]="formulario.invalid">Guardar</button>
+            
+            
+        
+        </form>
+    </div>
+</section>

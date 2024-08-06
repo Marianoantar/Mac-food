@@ -1,0 +1,12 @@
+
+<div id="categorias-container">
+    @for (categ of this.categorias(); track categ.id){
+        <app-tarjeta-categoria [categoria]="categ" 
+        [routerLink]="['/categoria', categ.id ]" routerLinkActive="router-link-active"
+        ></app-tarjeta-categoria>
+    }
+</div>
+
+
+<!-- <a href=""><li>{{categoria.nombre}}</li></a> -->
+

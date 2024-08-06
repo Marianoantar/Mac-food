@@ -1,0 +1,31 @@
+
+
+#container{
+    display: flex;
+    height: 80px;
+    justify-content: space-around;
+    border-radius: 10px 10px 0 0 ;
+    background-color: var(--color_fondo_Principal);
+    overflow: hidden;
+}
+
+.tab{
+    flex: 1;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    & svg{
+        display:block;
+        margin: auto;
+        transition: 300ms ease-in-out;
+    }
+    transition: 300ms ease-in-out;
+}
+
+.selected{
+    background-color: var(--color_principal);
+}
+

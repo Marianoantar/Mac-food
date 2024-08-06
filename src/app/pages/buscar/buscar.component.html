@@ -1,0 +1,33 @@
+<section>
+    <form #buscarForm="ngForm" (change)="buscar()">
+        <div id="barra-busqueda">
+            <img src="./../../../assets/icons/lupa.svg" alt="Buscar" >
+            <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="parametrosBusqueda.texto" placeholder="Buscar por nombre o categoría">
+        </div>
+        <div id="apto">
+            <div class="apto-container">
+                <img src="./../../../assets/icons/no_gluten.svg" alt="Apto Celiaco">
+                <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="parametrosBusqueda.aptoCeliaco" name="" id="">
+                <span>Apto celiaco</span>
+            </div >
+            <div class="apto-container">
+                    <img src="./../../../assets/icons/Vegetariano3.png" alt="ico Vegano">
+                    <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="parametrosBusqueda.aptoVegano" name="" id="">
+                    <span>Apto Vegano</span>
+                </div >
+            </div>
+        </form>
+        
+    @if(this.productos().length > 0){
+        <div id="contenedor-productos">
+            @for (produ of this.productos(); track produ.id){
+                <div>
+                    <!-- <p>{{produ.nombre}}</p> -->
+                    <app-tarjeta-producto [producto]="produ" [routerLink]="['/articulo', produ.id]"></app-tarjeta-producto>
+                </div>
+            }
+        </div>
+    } @else {
+        <h2>La busqueda no tiene resultados</h2>
+    }
+</section>

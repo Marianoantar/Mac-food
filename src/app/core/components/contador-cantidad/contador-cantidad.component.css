@@ -1,0 +1,22 @@
+#container{
+    display: flex;
+    justify-content: space-between;
+    width: 80px;
+    height: 30px;
+    background-color: var(--color_principal_atenuado);
+    border-radius: 10px ;
+    overflow: hidden;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0,0.7);
+}
+
+button{
+    border: unset;
+    font-weight: bold;
+    background-color: var(--color_principal);
+    padding:0 10px;
+
+}
+
+span{
+    line-height: 30px;
+}

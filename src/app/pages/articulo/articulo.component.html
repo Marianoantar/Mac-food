@@ -1,0 +1,43 @@
+
+<img id="imagenProducto" src="{{producto?.fotoUrl}}" alt="{{producto?.nombre}}">
+
+<section class="margen-chico">
+    <div id="ingredientes">
+        <span>Ingredientes: </span>
+        <!-- <ul>
+            @for(ingrediente of producto?.ingredientes; track producto?.id){
+                <li>{{ingrediente}}</li>
+            }
+        </ul> -->
+        @for(ingrediente of producto?.ingredientes; track producto?.id){
+            <span>{{ingrediente}}</span>
+        }
+    </div>
+
+    <div id="iconos">
+        @if(producto?.esCeliaco){
+            <div class="apto-container">
+                <img src="./../../../assets/icons/no_gluten.svg" alt=" Apto celiaco">
+                <p>Apto Celiaco</p>
+            </div>
+        }
+        @if(producto?.esVegano){
+            <div class="apto-container">
+                <img src="./../../../assets/icons/Vegetariano3.png" alt=" Apto Vegano">
+                <p>Apto Vegano</p>
+            </div>
+        }
+    </div>
+
+    <label for="notas">Notas</label>
+    <textarea name="notas" id="notas" cols="30" rows="10" [(ngModel)]="notas" ></textarea>
+    <div id="cantidad-container">
+        <label for="cantidad">Cantidad: </label>
+        <app-contador-cantidad (contadorCambiado)="cantidad.set($event)"></app-contador-cantidad>
+    </div>
+    <button (click)="agregarAlCarrito()">Agregar al carrito</button>
+    
+
+</section>
+
+
