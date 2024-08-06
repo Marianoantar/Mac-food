@@ -5,6 +5,7 @@ import { Categoria_model } from '../../core/interfaces/categorias';
 import { CommonModule } from '@angular/common';
 import { TarjetaCategoriaComponent } from '../../core/components/tarjeta-categoria/tarjeta-categoria.component';
 import { RouterModule } from '@angular/router';
+import { TabsService } from '../../core/services/tabs.service';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   headerService = inject(HeaderService);
   categoriasService = inject(CategoriasService);
+  tabsService = inject(TabsService);
+
   categorias: WritableSignal<Categoria_model[]> = signal([]);
   // categorias:Categoria_model[] = [];
 
@@ -25,8 +28,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
         this.headerService.titulo.set ('Home');
         this.headerService.extendido.set (true);
+        this.tabsService.seleccion.set('');
         this.categoriasService.getAll().then(res => this.categorias.set(res));
-        // this.cargarDatos();
   }
 
   ngOnDestroy(): void {
