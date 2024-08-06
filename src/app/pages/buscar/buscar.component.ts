@@ -7,6 +7,7 @@ import { ProductosService } from '../../core/services/productos.service';
 import { TarjetaProductoComponent } from '../../core/components/tarjeta-producto/tarjeta-producto.component';
 import { RouterModule } from '@angular/router';
 import { Producto_model } from '../../core/interfaces/productos';
+import { TabsService } from '../../core/services/tabs.service';
 
 @Component({
   selector: 'app-buscar',
@@ -19,6 +20,7 @@ export class BuscarComponent implements OnInit{
   
   headerService = inject(HeaderService);
   productosService = inject(ProductosService);
+  tabsService = inject (TabsService);
 
 
   parametrosBusqueda:BusquedaModel = {
@@ -33,6 +35,7 @@ export class BuscarComponent implements OnInit{
   ngOnInit(): void {
     this.headerService.titulo.set ('Buscar');
     this.productosService.getAll().then (productos => this.productos.set(productos));
+    this.tabsService.seleccion.set('buscar');
     
   }
 
