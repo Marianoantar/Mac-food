@@ -51,3 +51,10 @@ h2{
     font-size: xx-large;
     text-align: center;
 }
+
+.flex-center{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    height: 5vh;
+}

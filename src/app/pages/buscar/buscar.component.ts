@@ -29,6 +29,7 @@ export class BuscarComponent implements OnInit{
     aptoVegano: false
   }
   productos:WritableSignal<Producto_model[]> = signal([]);
+  cargando = signal(true);
 
   constructor() { };
 
@@ -36,12 +37,14 @@ export class BuscarComponent implements OnInit{
     this.headerService.titulo.set ('Buscar');
     this.productosService.getAll().then (productos => this.productos.set(productos));
     this.tabsService.seleccion.set('buscar');
-    
+    this.cargando.set(false);    
   }
 
   async buscar(){
+    this.cargando.set(true);
     const resultadoBusqueda = await this.productosService.buscar(this.parametrosBusqueda);
     this.productos.set(resultadoBusqueda);
+    this.cargando.set(false);
   }
 
 }

@@ -18,16 +18,23 @@
             </div>
         </form>
         
-    @if(this.productos().length > 0){
-        <div id="contenedor-productos">
-            @for (produ of this.productos(); track produ.id){
-                <div>
-                    <!-- <p>{{produ.nombre}}</p> -->
-                    <app-tarjeta-producto [producto]="produ" [routerLink]="['/articulo', produ.id]"></app-tarjeta-producto>
-                </div>
-            }
+    @defer (when !cargando()) {
+
+        @if(this.productos().length > 0){
+            <div id="contenedor-productos">
+                @for (produ of this.productos(); track produ.id){
+                    <div>
+                        <!-- <p>{{produ.nombre}}</p> -->
+                        <app-tarjeta-producto [producto]="produ" [routerLink]="['/articulo', produ.id]"></app-tarjeta-producto>
+                    </div>
+                }
+            </div>
+        } @else {
+            <h2>La busqueda no tiene resultados</h2>
+        } 
+    } @loading(minimum 1000ms) {
+        <div class="flex-center">
+            <img src="./../../../assets/icons/icons8-hilandero.gif" alt="spinner" >
         </div>
-    } @else {
-        <h2>La busqueda no tiene resultados</h2>
     }
 </section>
