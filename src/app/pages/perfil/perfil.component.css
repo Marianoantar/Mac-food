@@ -73,3 +73,9 @@ button:disabled{
     margin: -5px 0 0 0px;
     text-align: center;
 }
+
+.entrandoAdmin{
+    /* background-color: var(--color_principal_trans) ; */
+    /* color: var(--color_principal_trans); */
+    color: red !important;
+}

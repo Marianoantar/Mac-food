@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { HeaderService } from '../../core/services/header.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -26,6 +26,7 @@ export class PerfilComponent implements OnInit{
     telefono: '',
     detalleEntrga: ''
   }
+  entrandoAdmin:WritableSignal<boolean> = signal(false);
   
   
   constructor() { 
@@ -38,7 +39,9 @@ export class PerfilComponent implements OnInit{
     if(this.perfilService.perfil()){
       this.perfil = this.perfilService.perfil()!;
     }
-
+    if(this.perfil.nombre === 'admin' && this.perfil.direccion === 'admin'){
+      this.entrandoAdmin.set(true);
+    } else this.entrandoAdmin.set(false);
   }
 
   guardarDatosPerfil() {
@@ -55,6 +58,7 @@ export class PerfilComponent implements OnInit{
       detalleEntrga: ''
     }
     this.perfilService.borrarDatosPefil();
+    this.perfilService.admin.set(false);
   }
 
 

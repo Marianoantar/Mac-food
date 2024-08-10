@@ -5,6 +5,9 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { RubroComponent } from './pages/rubro/rubro.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { authGuard } from './core/guards/auth.guard';
+
 
 export const routes: Routes = [
     {
@@ -30,5 +33,10 @@ export const routes: Routes = [
     {
         path: 'categoria/:id',
         component: RubroComponent
+    },
+    {
+        path: 'admin',
+        component: AdminComponent,
+        canActivate: [authGuard]
     }
 ];

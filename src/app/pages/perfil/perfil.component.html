@@ -24,8 +24,14 @@
         
             <div>
                 <label for="telefono">telefono</label>
-                <input type="text" name="telefono" id="telefono" [(ngModel)]="perfil.telefono" #telefono="ngModel" [minlength]="5" required>
-                <p class="error" *ngIf="telefono.invalid && telefono.touched">Ingrese un número de teléfono válido</p>
+                <!-- si nombre y direccion son admin admin usa clase "entrandoAdmin" -->
+                @if(perfil.nombre === 'admin' && perfil.direccion === 'admin'){
+                    <input class="entrandoAdmin" type="password" name="telefono" id="telefono" [(ngModel)]="perfil.telefono" #telefono="ngModel" [minlength]="5" required>
+                    <p class="error" *ngIf="telefono.invalid && telefono.touched">Ingrese un número de teléfono válido</p>
+                } @else {
+                    <input type="text" name="telefono" id="telefono" [(ngModel)]="perfil.telefono" #telefono="ngModel" [minlength]="5" required>
+                    <p class="error" *ngIf="telefono.invalid && telefono.touched">Ingrese un número de teléfono válido</p>
+                }
             </div>
         
             <button type="submit" [disabled]="formulario.invalid">Guardar</button>
