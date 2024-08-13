@@ -7,7 +7,13 @@ import { PerfilModel } from '../interfaces/perfil';
 export class PerfilService {
   
 
-  perfil:WritableSignal<PerfilModel | undefined> = signal(undefined);
+  perfil:WritableSignal<PerfilModel | null> = signal({
+    nombre: '',
+    direccion: '',
+    telefono: '',
+    detalleEntrga: ''
+  });
+  hayPerfil:WritableSignal<boolean> = signal(false);
   admin:WritableSignal<boolean> = signal(false);
 
   constructor() { 
@@ -16,21 +22,56 @@ export class PerfilService {
   }
 
   guardarDatosPerfil(perfil: PerfilModel){
-    localStorage.setItem('perfil', JSON.stringify(perfil));
-    this.perfil.set(perfil);
     // corrobora sii es admin
-    if(perfil.nombre === 'admin' && perfil.direccion === 'admin'){
-      localStorage.setItem('token', 'true');
-      this.admin.set(true); // Signal admin si usuario es administrador
-    } else{
-      localStorage.removeItem('token');
+    if(this.entrandoAdmin(perfil)){
+      if(!this.codigoOk(perfil.telefono!)) {
+        // NO es Admin. 
+        this.borrarDatosPefil();
+        this.admin.set(false);
+        this.perfil.set(null);
+        localStorage.removeItem('token');
+        alert('El codigo no es el correcto para entrar como Administrador');
+        return;
+      } else {
+        // es Admin!!!}
+        localStorage.setItem('token', 'true');
+        this.admin.set(true); // Signal admin si usuario es administrador
+        this.terminarGuardado(perfil);
+        return;
+      }
+    } else {
+      this.terminarGuardado(perfil);
     }
+  }
+
+  terminarGuardado(perfil: PerfilModel){
+    localStorage.setItem('perfil', JSON.stringify(perfil));
+    this.hayPerfil.set(true); // Signal hayPerfil si hay datos en el local storage
+    this.perfil.set(perfil);
   }
   
   borrarDatosPefil(){
     localStorage.removeItem('perfil');
-    this.perfil.set(undefined);
     localStorage.removeItem('token');
+    this.hayPerfil.set(false);
+    this.admin.set(false); // Signal admin si usuario es administrador
+    this.perfil.set({
+      nombre: '',
+      direccion: '',
+      telefono: '',
+      detalleEntrga: ''
+    });
+  }
+
+
+  codigoOk(telefono: string): boolean {
+    if(telefono  === '12345'){
+      return true 
+    } else {return false;}
+  }
+
+  entrandoAdmin(perfil: PerfilModel): boolean {
+    return (perfil.nombre.toLowerCase() === 'admin' && perfil.direccion.toLowerCase() === 'admin');
   }
 
 }

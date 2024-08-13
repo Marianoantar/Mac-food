@@ -39,14 +39,21 @@ export class PerfilComponent implements OnInit{
     if(this.perfilService.perfil()){
       this.perfil = this.perfilService.perfil()!;
     }
-    if(this.perfil.nombre === 'admin' && this.perfil.direccion === 'admin'){
+    const nombre=this.perfil.nombre.toLowerCase();
+    const direccion=this.perfil.direccion.toLowerCase();
+    console.log('nombre: ', nombre);
+    console.log(nombre === 'admin' ? true : false);
+    console.log ('direccion: ', direccion);
+    console.log (direccion === 'admin' ? true : false);
+
+    if(nombre === 'admin' && direccion === 'admin'){
       this.entrandoAdmin.set(true);
     } else this.entrandoAdmin.set(false);
   }
 
   guardarDatosPerfil() {
-    this.perfilService.guardarDatosPerfil(this.perfil);
     this.tabsService.seleccion.set('carrito');
+    this.perfilService.guardarDatosPerfil(this.perfil);
     this.router.navigate(['/carrito']);
   }
 
@@ -58,7 +65,6 @@ export class PerfilComponent implements OnInit{
       detalleEntrga: ''
     }
     this.perfilService.borrarDatosPefil();
-    this.perfilService.admin.set(false);
   }
 
 

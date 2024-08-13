@@ -39,10 +39,10 @@
     <h3>Direccion de envio</h3>
 
     <div class="flex-apart" id="envios-container">
-        @if(perfilService.perfil()){
+        @if(this.perfilService.hayPerfil()){
             <div>
                 <h4>{{perfilService.perfil()?.nombre}}</h4>
-                <p>{{perfilService.perfil()?.direccion}} - {{perfilService.perfil()?.telefono}}</p>
+                <p>{{perfilService.perfil()?.direccion}} - <span *ngIf="!this.perfilService.admin()"> {{perfilService.perfil()?.telefono}}</span></p>
                 <p>{{perfilService.perfil()?.detalleEntrga}}</p>
             </div>
         } @else {
@@ -67,7 +67,7 @@
         </div>
     </div>
     <div >
-        <button id="enviar" [disabled]="!perfilService.perfil() || carroService.carrito.length === 0" (click)="enviarMensaje()">Realizar pedido</button>
+        <button id="enviar" [disabled]="!this.perfilService.hayPerfil() || carroService.carrito.length === 0" (click)="enviarMensaje()">Realizar pedido</button>
     </div>
 </section>
 
