@@ -1,5 +1,6 @@
 import { Injectable, signal, WritableSignal } from '@angular/core';
 import { PerfilModel } from '../interfaces/perfil';
+import { environments } from '../../../environments/environments';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,8 @@ export class PerfilService {
   });
   hayPerfil:WritableSignal<boolean> = signal(false);
   admin:WritableSignal<boolean> = signal(false);
+  entrandoAdmin:WritableSignal<boolean> = signal(false);
+
 
   constructor() { 
     const perfilLocasStorage = localStorage.getItem('perfil');
@@ -23,12 +26,13 @@ export class PerfilService {
 
   guardarDatosPerfil(perfil: PerfilModel){
     // corrobora sii es admin
-    if(this.entrandoAdmin(perfil)){
+    if(this.estaEntrandoAdmin(perfil)){
       if(!this.codigoOk(perfil.telefono!)) {
         // NO es Admin. 
         this.borrarDatosPefil();
         this.admin.set(false);
         this.perfil.set(null);
+        this.entrandoAdmin.set(false);
         localStorage.removeItem('token');
         alert('El codigo no es el correcto para entrar como Administrador');
         return;
@@ -40,6 +44,9 @@ export class PerfilService {
         return;
       }
     } else {
+      this.admin.set(false);
+      this.entrandoAdmin.set(false);
+      localStorage.removeItem('token');
       this.terminarGuardado(perfil);
     }
   }
@@ -65,12 +72,12 @@ export class PerfilService {
 
 
   codigoOk(telefono: string): boolean {
-    if(telefono  === '12345'){
+    if(telefono  === environments.CLAVE_ADMIN){
       return true 
     } else {return false;}
   }
 
-  entrandoAdmin(perfil: PerfilModel): boolean {
+  estaEntrandoAdmin(perfil: PerfilModel): boolean {
     return (perfil.nombre.toLowerCase() === 'admin' && perfil.direccion.toLowerCase() === 'admin');
   }
 

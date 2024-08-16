@@ -26,7 +26,7 @@ export class PerfilComponent implements OnInit{
     telefono: '',
     detalleEntrga: ''
   }
-  entrandoAdmin:WritableSignal<boolean> = signal(false);
+  // entrandoAdmin:WritableSignal<boolean> = signal(false);
   
   
   constructor() { 
@@ -47,14 +47,16 @@ export class PerfilComponent implements OnInit{
     console.log (direccion === 'admin' ? true : false);
 
     if(nombre === 'admin' && direccion === 'admin'){
-      this.entrandoAdmin.set(true);
-    } else this.entrandoAdmin.set(false);
+      this.perfilService.entrandoAdmin.set(true);
+    } else this.perfilService.entrandoAdmin.set(false);
   }
 
   guardarDatosPerfil() {
     this.tabsService.seleccion.set('carrito');
     this.perfilService.guardarDatosPerfil(this.perfil);
-    this.router.navigate(['/carrito']);
+    console.log('perfilService.admin(): ', this.perfilService.admin());
+    if(this.perfilService.admin()) this.router.navigate(['/admin'])
+      else this.router.navigate(['/carrito']);
   }
 
   borrar() {
