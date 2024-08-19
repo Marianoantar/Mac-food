@@ -26,6 +26,9 @@
                     <div>
                         <!-- <p>{{produ.nombre}}</p> -->
                         <app-tarjeta-producto [producto]="produ" [routerLink]="['/articulo', produ.id]"></app-tarjeta-producto>
+                        @if (perfilService.admin()){
+                            <button>Eliminar</button>
+                        }
                     </div>
                 }
             </div>

@@ -1,8 +1,10 @@
 #container{
     height: 100svh;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
 
 main{

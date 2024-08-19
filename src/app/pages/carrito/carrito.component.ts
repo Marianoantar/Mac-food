@@ -43,6 +43,7 @@ export class CarritoComponent implements OnInit{
   ngOnInit(): void {
     this.tabsService.seleccion.set('carrito');
     this.headerService.titulo.set ('Carrito');
+    if(localStorage.getItem('token')) this.perfilService.admin.set(true);
     this.buscarInformacion().then(() => this.calcularInformacion());
   }
   

@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { TarjetaCategoriaComponent } from '../../core/components/tarjeta-categoria/tarjeta-categoria.component';
 import { RouterModule } from '@angular/router';
 import { TabsService } from '../../core/services/tabs.service';
+import { PerfilService } from '../../core/services/perfil.service';
 
 @Component({
   selector: 'app-home',
@@ -19,9 +20,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   headerService = inject(HeaderService);
   categoriasService = inject(CategoriasService);
   tabsService = inject(TabsService);
+  perfilService = inject(PerfilService);
 
   categorias: WritableSignal<Categoria_model[]> = signal([]);
-  // categorias:Categoria_model[] = [];
 
   constructor() { };
 
@@ -29,6 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.headerService.titulo.set ('Home');
         this.headerService.extendido.set (true);
         this.tabsService.seleccion.set('');
+        if(localStorage.getItem('token')) this.perfilService.admin.set(true);
         this.categoriasService.getAll().then(res => this.categorias.set(res));
   }
 

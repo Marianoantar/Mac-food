@@ -26,9 +26,7 @@ export class PerfilComponent implements OnInit{
     telefono: '',
     detalleEntrga: ''
   }
-  // entrandoAdmin:WritableSignal<boolean> = signal(false);
-  
-  
+
   constructor() { 
   };
   headerService = inject(HeaderService)
@@ -39,15 +37,13 @@ export class PerfilComponent implements OnInit{
     if(this.perfilService.perfil()){
       this.perfil = this.perfilService.perfil()!;
     }
+
     const nombre=this.perfil.nombre.toLowerCase();
     const direccion=this.perfil.direccion.toLowerCase();
-    console.log('nombre: ', nombre);
-    console.log(nombre === 'admin' ? true : false);
-    console.log ('direccion: ', direccion);
-    console.log (direccion === 'admin' ? true : false);
-
     if(nombre === 'admin' && direccion === 'admin'){
       this.perfilService.entrandoAdmin.set(true);
+
+
     } else this.perfilService.entrandoAdmin.set(false);
   }
 
