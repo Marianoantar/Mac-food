@@ -20,7 +20,7 @@ export class CarroService implements OnInit{
       if(carritoGuardado){
         const fechaGuardada = new Date(carritoGuardado.fecha);
         const fecha = new Date();
-        const dias = this.configService.configuracion().diasVencimientoCarrito ; // dias de vencimiento del carrito
+        const dias = this.configService.configuracion().DIAS_VENCIMIENTO_CARRITO ; // dias de vencimiento del carrito
         // diferencia en dia
         const diferencia =  fecha.getTime() - fechaGuardada.getTime();
         // si la diferencia es mayor al numero de dias de vencimiento

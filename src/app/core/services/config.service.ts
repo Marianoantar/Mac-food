@@ -7,8 +7,8 @@ import { ConfigModel } from '../interfaces/config';
 export class ConfigService {
 
   configuracion: WritableSignal<ConfigModel> = signal({
-    costoEnvio: 0,
-    diasVencimientoCarrito: 30,
+    COSTO_ENVIO: 0,
+    DIAS_VENCIMIENTO_CARRITO: 30,
     NUMERO_WHATSAPP: 5555555555,
     CLAVE_ADMIN: "12345"
   })

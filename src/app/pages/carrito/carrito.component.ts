@@ -64,13 +64,13 @@ export class CarritoComponent implements OnInit{
   }
 
   calcularInformacion(){
-    // this.delivery = this.configService.configuracion().costoEnvio;
+    // this.delivery = this.configService.configuracion().COSTO_ENVIO;
     this.subtotal = 0;
     for (let i = 0; i < this.productosCarrito().length; i++) {
       const element = this.carroService.carrito[i];
       this.subtotal += this.productosCarrito()[i].precio * element.cantidad;
     }
-    this.total = this.subtotal + this.configService.configuracion().costoEnvio;
+    this.total = this.subtotal + this.configService.configuracion().COSTO_ENVIO;
   }
 
   cambiarCantidadProducto(id:number, cantidad:number){

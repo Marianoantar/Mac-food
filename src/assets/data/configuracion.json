@@ -1,6 +1,6 @@
 {
-    "costoEnvio": 1000,
-    "diasVencimientoCarrito": 2,
+    "COSTO_ENVIO": 1000,
+    "DIAS_VENCIMIENTO_CARRITO": 2,
     "NUMERO_WHATSAPP": 3415620901,
     "CLAVE_ADMIN": "12345"
 }
