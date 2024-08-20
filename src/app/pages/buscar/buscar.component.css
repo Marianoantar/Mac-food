@@ -14,8 +14,24 @@
     border: unset;
     font-size: large;
 }
+
+.boton-chico{
+    font-size: smaller;
+    margin-left: 10px;
+    padding: 5px;
+    background-color: var(--color_principal);
+    border: unset;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+input {
+    cursor: pointer;
+}
+
 input:focus{
     outline: none;
+
 }
 
 #apto{
@@ -39,7 +55,18 @@ img{
 
    display: flex; 
    flex-direction: column;
-   gap: 15px
+   gap: 15px;
+}
+
+app-tarjeta-producto{
+    cursor: pointer;
+}
+
+#editar-tarjeta-producto{
+    margin-top: 5px;
+    display: flex;
+    align-items: right;
+    justify-content: right;
 }
 
 h2{

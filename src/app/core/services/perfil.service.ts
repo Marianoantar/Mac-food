@@ -1,12 +1,13 @@
-import { Injectable, signal, WritableSignal } from '@angular/core';
+import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { PerfilModel } from '../interfaces/perfil';
-import { environments } from '../../../environments/environments';
+import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PerfilService {
   
+  configService = inject(ConfigService)
 
   perfil:WritableSignal<PerfilModel | null> = signal({
     nombre: '',
@@ -21,7 +22,10 @@ export class PerfilService {
 
   constructor() { 
     const perfilLocasStorage = localStorage.getItem('perfil');
-    if(perfilLocasStorage) this.perfil.set(JSON.parse(perfilLocasStorage)) ;
+    if(perfilLocasStorage) {
+      this.perfil.set(JSON.parse(perfilLocasStorage)) ;
+      this.hayPerfil.set(true)
+    }
   }
 
   guardarDatosPerfil(perfil: PerfilModel){
@@ -72,7 +76,7 @@ export class PerfilService {
 
 
   codigoOk(telefono: string): boolean {
-    if(telefono  === environments.CLAVE_ADMIN){
+    if(telefono  === this.configService.configuracion().CLAVE_ADMIN){
       return true 
     } else {return false;}
   }

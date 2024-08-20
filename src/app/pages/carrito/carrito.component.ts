@@ -8,9 +8,7 @@ import { ProductosService } from '../../core/services/productos.service';
 import { Router, RouterModule } from '@angular/router';
 import { PerfilService } from '../../core/services/perfil.service';
 import { TabsService } from '../../core/services/tabs.service';
-import { NUMERO_WHATSAPP } from '../../core/constantes/telefono';
 import { ConfigService } from '../../core/services/config.service';
-import { environments } from '../../../environments/environments';
 
 @Component({
   selector: 'app-carrito',
@@ -94,7 +92,7 @@ La direccion de envío es ${this.perfilService.perfil()?.direccion} - ${this.per
 Muchas gracias!!!
     `
     // const link = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURI(mensaje)}`;
-    const link = `https://wa.me/${environments.NUMERO_WHATSAPP}?text=${encodeURI(mensaje)}`;
+    const link = `https://wa.me/${this.configService.configuracion().NUMERO_WHATSAPP}?text=${encodeURI(mensaje)}`;
     window.open(link, '_blank');
     this.dialog.nativeElement.showModal();
   }

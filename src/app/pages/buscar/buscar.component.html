@@ -4,6 +4,11 @@
             <img src="./../../../assets/icons/lupa.svg" alt="Buscar" >
             <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="parametrosBusqueda.texto" placeholder="Buscar por nombre o categoría">
         </div>
+        @if(perfilService.admin()){
+            <div >
+                <button id="barra-busqueda">Agregar producto</button>
+            </div>
+        }
         <div id="apto">
             <div class="apto-container">
                 <img src="./../../../assets/icons/no_gluten.svg" alt="Apto Celiaco">
@@ -27,7 +32,10 @@
                         <!-- <p>{{produ.nombre}}</p> -->
                         <app-tarjeta-producto [producto]="produ" [routerLink]="['/articulo', produ.id]"></app-tarjeta-producto>
                         @if (perfilService.admin()){
-                            <button>Eliminar</button>
+                            <div id="editar-tarjeta-producto">
+                                <button class="boton-chico" type="button">Eliminar</button>
+                                <button class="boton-chico" type="button">Modificar</button>
+                            </div>
                         }
                     </div>
                 }
