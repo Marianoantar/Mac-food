@@ -1,1 +1,33 @@
 <p>admin works!</p>
+<div id="form-content">
+    <form #formulario="ngForm" (ngSubmit)="guardarConfiguracion()">
+
+        <div>
+            <label for="clave_admin">Clave administrador</label>
+            <input type="text" name="clave_admin" id="clave_admin" [(ngModel)]="configuracion.CLAVE_ADMIN" #nombre="ngModel" [minlength]="5" required>
+            <p class="error" *ngIf="formulario.invalid && formulario.touched">Ingrese un codigo válido</p>
+        </div>
+
+        <div> 
+            <label for="numero_whatsapp">Numero Whatsapp</label>
+            <input type="number" name="numero_whatsapp" id="numero_whatsapp" [(ngModel)]="this.configuracion.NUMERO_WHATSAPP" #nombre="ngModel" required>
+            <p class="error" *ngIf="formulario.invalid && formulario.touched">Ingrese un codigo válido</p>
+        </div>
+
+        <div>
+            <label for="diaz">Dias para que expire el carrito</label>
+            <input type="number" name="diaz" id="diaz" [(ngModel)]="this.configuracion.DIAS_VENCIMIENTO_CARRITO" #nombre="ngModel" required>
+            <p class="error" *ngIf="formulario.invalid && formulario.touched">Ingrese dias para que expire el carrito</p>
+        </div>
+
+        <div>
+            <label for="costo">Costo del envio</label>
+            <input type="number" name="costo" id="costo" [(ngModel)]="this.configuracion.COSTO_ENVIO" #nombre="ngModel" required>
+            <p class="error" *ngIf="formulario.invalid && formulario.touched">Ingrese costo de envio</p>
+        </div>
+
+        <button type="button" (click)="loadConfiguracion()">Load configuracion</button>
+        <button type="button" (click)="guardarConfiguracion()">Guardar configuracion</button>
+
+    </form>
+</div>
