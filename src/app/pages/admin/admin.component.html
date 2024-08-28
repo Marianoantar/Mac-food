@@ -1,4 +1,3 @@
-<p>admin works!</p>
 <div id="form-content">
     <form #formulario="ngForm" (ngSubmit)="guardarConfiguracion()">
 
@@ -26,8 +25,11 @@
             <p class="error" *ngIf="formulario.invalid && formulario.touched">Ingrese costo de envio</p>
         </div>
 
-        <button type="button" (click)="loadConfiguracion()">Load configuracion</button>
-        <button type="button" (click)="guardarConfiguracion()">Guardar configuracion</button>
+        <div id="div-buttons">
+            <button type="button" (click)="loadConfiguracion()">Load configuracion</button>
+            <button type="button" (click)="guardarConfiguracion()">Guardar configuracion</button>
+
+        </div>
 
     </form>
 </div>

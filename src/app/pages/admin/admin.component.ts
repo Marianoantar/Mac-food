@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
 import { HeaderService } from '../../core/services/header.service';
 import { TabsService } from '../../core/services/tabs.service';
 import { FormsModule } from '@angular/forms';
@@ -6,6 +6,7 @@ import { ConfigService } from '../../core/services/config.service';
 import { ConfigModel } from '../../core/interfaces/config';
 import { CommonModule } from '@angular/common';
 import { PerfilService } from '../../core/services/perfil.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -20,6 +21,7 @@ export class AdminComponent implements OnInit {
   private tabsService = inject(TabsService);
   private configService = inject(ConfigService);
   private perfilService =inject(PerfilService);
+  private router = inject(Router);
   configuracion:ConfigModel = this.configService.configuracion();
   cargando = signal(true)
 
@@ -28,9 +30,6 @@ export class AdminComponent implements OnInit {
   }
   
    ngOnInit(): void {
-    // await this.configService.leerConfiguracion().then(() => {
-    //   this.configuracion = this.configService.configuracion();
-    // });
     this.headerService.titulo.set ('Administrador');
     this.tabsService.seleccion.set('admin');
     if(localStorage.getItem('token')) this.perfilService.admin.set(true);
@@ -38,13 +37,16 @@ export class AdminComponent implements OnInit {
   }
   
   async loadConfiguracion(){
-    await this.configService.leerConfiguracion();
-    this.configuracion = this.configService.configuracion();
+    await this.configService.leerConfiguracion().then(config => {
+      this.configuracion = config;
+    })
   }
+  
+
   guardarConfiguracion(){
-        // Suponiendo que tienes el objeto de configuración en una variable llamada 'configData'
-        // const blob = new Blob([JSON.stringify(this.configuracion, null, 2)], { type: 'application/json' });
-        // saveAs(blob, './../assets/data/configuracion.json');
+    this.configService.guardarConfiguracion(this.configuracion);
+    console.log('configuracion guardada', this.configuracion);
+    this.router.navigate(['/']);
   }
 
 }

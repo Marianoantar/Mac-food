@@ -19,17 +19,44 @@ export class ConfigService {
    }
 
 
-   async leerConfiguracion(){
+   async leerConfiguracion(): Promise<ConfigModel> {
     try {
-      fetch("./../../assets/data/configuracion.json").then(res => {
+      fetch('http://localhost:3001/config').then(res => {
         return res.json()
       })
       . then(resJson =>{
-          this.configuracion.set(resJson)
+          console.log('En configService.llerConfiguracion', resJson);
+          this.configuracion.set(resJson);
+          return (resJson)
         })
     } catch (error) {
       console.error("Error al leer el archivo de configuracion: " + error);
+      return this.configuracion();
     }
+    return this.configuracion();
    }
 
+   async guardarConfiguracion(configuracion: ConfigModel) {
+    try {
+      const response = await fetch('http://localhost:3001/config', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(configuracion)
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error en la respuesta del servidor: ${response.statusText}`);
+      }
+    } catch (error) {
+      if (error instanceof ErrorEvent) {
+        // Error del lado del cliente
+        console.error('Error del cliente:', error.error.message);
+      } else {
+        // Error del lado del servidor
+        console.error(`Error del servidor: ${error}`, error);
+      }
+      throw error;    }
+  }
 }
