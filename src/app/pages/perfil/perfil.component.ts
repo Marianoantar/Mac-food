@@ -50,7 +50,6 @@ export class PerfilComponent implements OnInit{
   guardarDatosPerfil() {
     this.tabsService.seleccion.set('carrito');
     this.perfilService.guardarDatosPerfil(this.perfil);
-    console.log('perfilService.admin(): ', this.perfilService.admin());
     if(this.perfilService.admin()) this.router.navigate(['/admin'])
       else this.router.navigate(['/carrito']);
   }

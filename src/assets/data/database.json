@@ -5,7 +5,7 @@
     "fotoUrl": "https://us.123rf.com/450wm/hitforsa/hitforsa1603/hitforsa160300019/55641717-pizza-peque%C3%B1a-margarita.jpg?ver=6",
     "productos": [
       {
-        "id": "101",
+        "id": 1,
         "nombre":"Pizza de Muzzarella",
         "precio": 8500,
         "esVegano":true,
@@ -14,7 +14,7 @@
         "fotoUrl": "https://us.123rf.com/450wm/hitforsa/hitforsa1603/hitforsa160300019/55641717-pizza-peque%C3%B1a-margarita.jpg?ver=6"
       },
       {
-        "id": "102",
+        "id": 2,
         "nombre":"Pizza de 4 quesos",
         "precio": 8500,
         "esVegano":false,
@@ -23,7 +23,7 @@
         "fotoUrl": "https://us.123rf.com/450wm/hitforsa/hitforsa1603/hitforsa160300019/55641717-pizza-peque%C3%B1a-margarita.jpg?ver=6"
       },
       {
-        "id": "103",
+        "id": 3,
         "nombre":"Pizza de Anana con Palmitos",
         "precio": 8500,
         "esVegano":true,
@@ -32,7 +32,7 @@
         "fotoUrl": "https://us.123rf.com/450wm/hitforsa/hitforsa1603/hitforsa160300019/55641717-pizza-peque%C3%B1a-margarita.jpg?ver=6"
       },
       {
-        "id": "104",
+        "id": 4,
         "nombre":"Pizza de rucula",
         "precio": 8500,
         "esVegano":true,
@@ -48,7 +48,7 @@
     "fotoUrl": "https://img.freepik.com/vector-gratis/hamburguesa-realista-sobre-fondo-pizarra_79603-1042.jpg?w=2000",
     "productos": [
       {
-        "id": "201",
+        "id": 5,
         "nombre":"Hamburguesa con queso",
         "precio": 3000,
         "esVegano":false,
@@ -57,7 +57,7 @@
         "fotoUrl": "https://quem.com.ar/tienda/wp-content/uploads/2020/12/Grandwich_17-10_-061.jpg"
       },
       {
-        "id": "202",
+        "id": 6,
         "nombre":"Hamburguesa especial",
         "precio": 4500,
         "esVegano":false,
@@ -66,7 +66,7 @@
         "fotoUrl": "https://www.thestreet.com/.image/t_share/MTg5Nzc4OTA2NzA0NzgzMDM2/avocado-bacon-whopper.jpg"
       },
       {
-        "id": "203",
+        "id": 7,
         "nombre":"Hamburguesa vegana",
         "precio": 4200,
         "esVegano":true,
@@ -75,7 +75,7 @@
         "fotoUrl": "https://www.pequerecetas.com/wp-content/uploads/2009/04/hamburguesa-de-garbanzos-casera-receta.jpg"
       },
       {
-        "id": "204",
+        "id": 8,
         "nombre":"Hamburguesa celíaca",
         "precio": 4900,
         "esVegano":false,
@@ -84,7 +84,7 @@
         "fotoUrl": "https://www.perez-h.com/newsite/wp-content/uploads/2016/06/queso-2.jpg"
       },
       {
-        "id": "205",
+        "id": 9,
         "nombre":"Hamburguesa americana",
         "precio": 5200,
         "esVegano":false,
@@ -93,7 +93,7 @@
         "fotoUrl": "https://www.clarin.com/img/2022/05/27/0HXb0UR0v_2000x1500__1.jpg"
       },
       {
-        "id": "206",
+        "id": 10,
         "nombre":"Medallón platero",
         "precio": 3500,
         "esVegano":true,

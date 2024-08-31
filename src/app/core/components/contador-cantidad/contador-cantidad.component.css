@@ -1,8 +1,9 @@
 #container{
     display: flex;
     justify-content: space-between;
-    width: 80px;
-    height: 30px;
+    align-items: center;
+    width: 20svw;
+    height: 3svh;
     background-color: var(--color_principal_atenuado);
     border-radius: 10px ;
     overflow: hidden;
@@ -18,5 +19,5 @@ button{
 }
 
 span{
-    line-height: 30px;
+    line-height: 1svh;
 }

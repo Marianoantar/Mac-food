@@ -33,7 +33,7 @@ h2{
 .tarjeta-producto-container{
     /* position:relative */
     display: flex;
-    height: 100px;
+    height: 12svh;
     background-color: var(--color_principal_atenuado );
 }
 
@@ -78,23 +78,56 @@ h2{
 
 }
 
-#centro{
-    width: 55%;
-    align-items: center;
+#derecha{
+    width:65%;
+    display: block;
+    margin-right: 0px;
+    padding: 0px 0;
+    /* align-items: end; */
 }
 
-#derecha{
-    width:10%;
-    margin-right: 20px;
-    padding: 10px 0;
-    align-items: end;
+#der-arriba{
+    height: 60%;
+    display: block;
+    /* padding-bottom: 5px; */
+    padding: 0;
+    margin-top: 4px;
+    margin-bottom: 3px;
+    text-align: center;
+    line-height: 1;
+    overflow: hidden;
 }
+
+#der-arriba #titulo{
+    font-size: 2svh;
+}
+
+#der-arriba #notas{
+    height:65%;
+    font-size:1.5svb ;
+    padding-top: 4px;
+}
+
+#der-abajo{
+    height: 30%;
+    padding:5px;
+    
+}
+
+/* app-contador-cantidad{
+    height:50%;
+} */
+
 
 #borrar{
+    height: 4svh;
     background-color: unset;
     border: unset;
     cursor: pointer;
+}
 
+#borrar img{
+    height: 80%;
 }
 
 #mas{

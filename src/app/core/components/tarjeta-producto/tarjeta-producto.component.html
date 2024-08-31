@@ -7,7 +7,7 @@
     <div id="detalles">
         <h4>{{producto.nombre}}</h4>
         <ul>
-            @for(ingrediente of producto.ingredientes; track producto.id){
+            @for(ingrediente of producto.ingredientes; track ingrediente){
                 <li>{{ingrediente}}</li>
             }
         </ul>

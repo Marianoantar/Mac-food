@@ -59,7 +59,11 @@ export class CarritoComponent implements OnInit{
   }
 
   eliminarProducto(idProducto:number):void {
+    // Elimina producto de carro.service.carrito y guarda en localstorage
     this.carroService.eliminarProducto(idProducto);
+    // Reinicia el arreglo de productos en productosCarrito
+    this.productosCarrito.set(this.productosCarrito().filter(producto => producto.id !== idProducto)) ;
+    // this.buscarInformacion().then(() => this.calcularInformacion());
     this.calcularInformacion();
   }
 
@@ -82,7 +86,7 @@ export class CarritoComponent implements OnInit{
     let pedido = '';
     for (let i = 0; i < this.carroService.carrito.length; i++) {
       const producto = await this.productosService.getById(this.carroService.carrito[i].idProducto);
-      pedido += `*${this.carroService.carrito[i].cantidad} X ${producto?.nombre}\n`;
+      pedido += `*${this.carroService.carrito[i].cantidad} X ${producto?.nombre} (nota: ${this.carroService.carrito[i].notas}) \n`;
     }
     const mensaje = `
 Hola! Soy ${this.perfilService.perfil()?.nombre}, y te quiero hacer el siguiente pedido:

@@ -9,7 +9,7 @@
                 <li>{{ingrediente}}</li>
             }
         </ul> -->
-        @for(ingrediente of producto?.ingredientes; track producto?.id){
+        @for(ingrediente of producto?.ingredientes; track ingrediente){
             <span>{{ingrediente}}</span>
         }
     </div>

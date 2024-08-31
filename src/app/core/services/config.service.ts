@@ -25,7 +25,6 @@ export class ConfigService {
         return res.json()
       })
       . then(resJson =>{
-          console.log('En configService.llerConfiguracion', resJson);
           this.configuracion.set(resJson);
           return (resJson)
         })

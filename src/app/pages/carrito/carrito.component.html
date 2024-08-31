@@ -1,31 +1,32 @@
 <section>
     @if(carroService.carrito.length !== 0) {
         <div id="tarjetas-container" class="margen-chico">
-                        <div class="tarjeta-producto-container" *ngFor="let producto of carroService.carrito, index as i">
-                    
-                    <ng-container *ngIf="productosCarrito()[i]  && i >= 0 && i < this.productosCarrito().length ">
-                        
-                        <div id="izquierda" [ngStyle]="{'background-image': 'url(' + productosCarrito()[i].fotoUrl + ')'}" >
-                            <div id="iconos">
-                                <img *ngIf="productosCarrito()[i].esCeliaco" src="./../../../assets/icons/no_gluten.svg" alt="Apto Celiaco" sizes="" srcset="">
-                                <img *ngIf="productosCarrito()[i].esVegano" src="./../../../assets/icons/Vegetariano3.png" alt="Apto Vegetarianos" sizes="" srcset="">
-                            </div>
+            <div class="tarjeta-producto-container" *ngFor="let producto of carroService.carrito, index as i">
+            
+                <ng-container *ngIf="productosCarrito()[i]  && i >= 0 && i < this.productosCarrito().length ">
+                
+                    <div id="izquierda" [ngStyle]="{'background-image': 'url(' + productosCarrito()[i].fotoUrl + ')'}" >
+                        <div id="iconos">
+                            <img *ngIf="productosCarrito()[i].esCeliaco" src="./../../../assets/icons/no_gluten.svg" alt="Apto Celiaco" sizes="" srcset="">
+                            <img *ngIf="productosCarrito()[i].esVegano" src="./../../../assets/icons/Vegetariano3.png" alt="Apto Vegetarianos" sizes="" srcset="">
+                        </div>
+                    </div>
+                    <div id="derecha">
+                        <div id="der-arriba">
+                            <p id="titulo" class="negrita">{{productosCarrito()[i].nombre}}</p>
+                            <p id="notas" *ngIf="producto.notas !==''">{{producto.notas}}</p>
                         </div>
                         
-                        <div id="centro">
-                            <p class="negrita">{{productosCarrito()[i].nombre}}</p>
-                            <p *ngIf="producto.notas !==''">{{producto.notas}}</p>
+                        <div id="der-abajo">
                             <app-contador-cantidad [cantidadInicial]="producto.cantidad" 
                             (contadorCambiado)="cambiarCantidadProducto(producto.idProducto, $event )">
                             </app-contador-cantidad>
-                        </div>
-                    
-                        <div id="derecha">
                             <button id="borrar" (click)="eliminarProducto(producto.idProducto)"><img src="./../../../assets/icons/borrar.png" alt="" srcset=""></button>
                             <p class="negrita">${{productosCarrito()[i].precio}}</p>
                         </div>
-                    </ng-container>
-                </div>
+                    </div>  
+                </ng-container>
+            </div>
         </div>
     } @else {
         <h2>Carrito vacio</h2>

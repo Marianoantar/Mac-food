@@ -2,8 +2,10 @@
 
 #container{
     display: flex;
-    height: 80px;
+    height: 11svh;
     justify-content: space-around;
+    padding: 0  0 0 10px;
+    margin: 0;
     border-radius: 10px 10px 0 0 ;
     background-color: var(--color_fondo_Principal);
     overflow: hidden;

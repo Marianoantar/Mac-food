@@ -32,7 +32,9 @@ export class ArticuloComponent {
   constructor( private activatedRoute: ActivatedRoute, private router: Router){
     this.activatedRoute.params.subscribe(param => {
       if(param['id']){
-        this.productoService.getById(param['id']) 
+        const id = Number(param['id']);
+
+        this.productoService.getById(id) 
           .then(producto =>{
             this.producto = producto;
             this.headerService.titulo.set(producto!.nombre)
