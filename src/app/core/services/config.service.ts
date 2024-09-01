@@ -21,7 +21,8 @@ export class ConfigService {
 
    async leerConfiguracion(): Promise<ConfigModel> {
     try {
-      fetch('http://localhost:3001/config').then(res => {
+      // fetch('http://localhost:3001/config').then(res => {
+      fetch('https://backend-rapid-food.onrender.com/config').then(res => {
         return res.json()
       })
       . then(resJson =>{
@@ -37,7 +38,7 @@ export class ConfigService {
 
    async guardarConfiguracion(configuracion: ConfigModel) {
     try {
-      const response = await fetch('http://localhost:3001/config', {
+      const response = await fetch('https://backend-rapid-food.onrender.com/config', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
