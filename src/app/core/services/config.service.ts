@@ -38,6 +38,7 @@ export class ConfigService {
 
    async guardarConfiguracion(configuracion: ConfigModel) {
     try {
+      // const response = await fetch('http://localhost:3001/config', {
       const response = await fetch('https://backend-rapid-food.onrender.com/config', {
         method: 'POST',
         headers: {

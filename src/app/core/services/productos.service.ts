@@ -11,7 +11,9 @@ export class ProductosService {
   constructor() { }
 
   async getProductsByCategoria(id:number): Promise<Producto_model[]>{
-    const res = await fetch("./assets/data/database.json");
+    // const res = await fetch("./assets/data/database.json"); //NO EXISTE MAS EL ARCHIVO DENTRO DE APP
+    // const res = await fetch("http://localhost:3000/product"); //ARCHIVO EN SERVIDOR LOCAL
+    const res = await fetch("https://backend-rapid-food.onrender.com/product"); //ARCHIVO EN SERVIDOR (NUBE)
     const resJson:Categoria_model[] = await res.json();
     const productos = resJson.find(categoria => categoria.id === id)?.productos; 
     if (productos) return productos;
@@ -19,7 +21,10 @@ export class ProductosService {
   }
 
   async getAll():Promise<Producto_model[]>{
-    const res = await fetch("./../../../assets/data/database.json");
+    // const res = await fetch("./../../../assets/data/database.json"); //NO EXISTE MAS EL ARCHIVO DENTRO DE APP
+    // const res = await fetch("http://localhost:3000/product"); //ARCHIVO EN SERVIDOR LOCAL
+    const res = await fetch("https://backend-rapid-food.onrender.com/product"); //ARCHIVO EN SERVIDOR (NUBE)
+
     const resJson:Categoria_model[] = await res.json();
 
     let productos:Producto_model[] = [];
