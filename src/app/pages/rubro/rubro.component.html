@@ -1,9 +1,18 @@
 <section>
     <div id="contenedor-productos">
+        @if (perfilService.admin()){
+            <app-tarjeta-producto [producto]="ProductoNuevo"></app-tarjeta-producto>
+        }
         @for (produ of this.productos(); track produ.id){
             <div>
                 <!-- <p>{{produ.nombre}}</p> -->
                 <app-tarjeta-producto [producto]="produ" [routerLink]="['/articulo', produ.id]"></app-tarjeta-producto>
+                @if (perfilService.admin()){
+                    <div id="editar-tarjeta-producto">
+                        <button class="boton-chico" type="button">Eliminar</button>
+                        <button class="boton-chico" type="button">Modificar</button>
+                    </div>
+                }
             </div>
         }
     </div>

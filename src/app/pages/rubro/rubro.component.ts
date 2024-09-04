@@ -7,6 +7,7 @@ import { Producto_model } from '../../core/interfaces/productos';
 import { CommonModule } from '@angular/common';
 import { TarjetaProductoComponent } from '../../core/components/tarjeta-producto/tarjeta-producto.component';
 import { CategoriasService } from '../../core/services/categorias.service';
+import { PerfilService } from '../../core/services/perfil.service';
 
 @Component({
   selector: 'app-rubro',
@@ -21,8 +22,23 @@ export class RubroComponent {
   private tabsService = inject(TabsService);
   private categoriasService = inject(CategoriasService);
   private activatedRoute = inject(ActivatedRoute);
+  public perfilService = inject(PerfilService);
+
   public id: number = 0;
   public productos:WritableSignal<Producto_model[]> = signal ([]);
+  public ProductoNuevo: Producto_model;
+
+  constructor(){
+    this.ProductoNuevo = {
+      id: 0,
+      nombre: 'AGREGAR PRODUCTO',
+      precio: 0,
+      esVegano: false,
+      esCeliaco: false,
+      ingredientes: '',
+      fotoUrl: './assets/img/signo-interrogacion.avif'
+    };
+  }
   
   ngOnInit(): void {
     this.tabsService.seleccion.set ('Ninguno');

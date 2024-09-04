@@ -1,5 +1,6 @@
-import { Injectable, signal, WritableSignal } from '@angular/core';
+import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { ConfigModel } from '../interfaces/config';
+import { ServerVarService } from './server-var.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ export class ConfigService {
     CLAVE_ADMIN: "12345"
   })
 
+  serverVar = inject(ServerVarService);
+
   constructor() {
     // leer archivo de configuracion
     this.leerConfiguracion()
@@ -22,7 +25,7 @@ export class ConfigService {
    async leerConfiguracion(): Promise<ConfigModel> {
     try {
       // fetch('http://localhost:3001/config').then(res => {
-      fetch('https://backend-rapid-food.onrender.com/config').then(res => {
+      fetch(this.serverVar.urlServer + '/config').then(res => {
         return res.json()
       })
       . then(resJson =>{
@@ -39,7 +42,7 @@ export class ConfigService {
    async guardarConfiguracion(configuracion: ConfigModel) {
     try {
       // const response = await fetch('http://localhost:3001/config', {
-      const response = await fetch('https://backend-rapid-food.onrender.com/config', {
+      const response = await fetch(this.serverVar.urlServer + '/config', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

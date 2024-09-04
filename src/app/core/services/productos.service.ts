@@ -1,19 +1,21 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Producto_model } from '../interfaces/productos';
 import { Categoria_model } from '../interfaces/categorias';
 import { BusquedaModel } from '../interfaces/busqueda';
+import { ServerVarService } from './server-var.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductosService {
 
+  serverVar = inject (ServerVarService);
   constructor() { }
 
   async getProductsByCategoria(id:number): Promise<Producto_model[]>{
     // const res = await fetch("./assets/data/database.json"); //NO EXISTE MAS EL ARCHIVO DENTRO DE APP
     // const res = await fetch("http://localhost:3000/product"); //ARCHIVO EN SERVIDOR LOCAL
-    const res = await fetch("https://backend-rapid-food.onrender.com/product"); //ARCHIVO EN SERVIDOR (NUBE)
+    const res = await fetch(this.serverVar.urlServer + "/product"); //ARCHIVO EN SERVIDOR (NUBE)
     const resJson:Categoria_model[] = await res.json();
     const productos = resJson.find(categoria => categoria.id === id)?.productos; 
     if (productos) return productos;
@@ -23,7 +25,7 @@ export class ProductosService {
   async getAll():Promise<Producto_model[]>{
     // const res = await fetch("./../../../assets/data/database.json"); //NO EXISTE MAS EL ARCHIVO DENTRO DE APP
     // const res = await fetch("http://localhost:3000/product"); //ARCHIVO EN SERVIDOR LOCAL
-    const res = await fetch("https://backend-rapid-food.onrender.com/product"); //ARCHIVO EN SERVIDOR (NUBE)
+    const res = await fetch(this.serverVar.urlServer + "/product"); //ARCHIVO EN SERVIDOR (NUBE)
 
     const resJson:Categoria_model[] = await res.json();
 
