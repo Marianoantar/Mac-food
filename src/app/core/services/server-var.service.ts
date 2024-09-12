@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class ServerVarService {
 
   urlLocalServer = 'http://localhost:3000'; // URL del server
+  // urlServer = this.urlLocalServer;
   urlServer = 'https://backend-rapid-food.onrender.com'; // URL del server (ONRENDER)
 
   constructor() { }

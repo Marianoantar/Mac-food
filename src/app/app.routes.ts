@@ -7,6 +7,7 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { RubroComponent } from './pages/rubro/rubro.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { authGuard } from './core/guards/auth.guard';
+import { EdicionProductoComponent } from './pages/edicion-producto/edicion-producto.component';
 
 
 export const routes: Routes = [
@@ -38,5 +39,9 @@ export const routes: Routes = [
         path: 'admin',
         component: AdminComponent,
         canActivate: [authGuard]
+    },
+    {
+        path: 'editarProducto/:id_producto/:id_rubro',
+        component: EdicionProductoComponent
     }
 ];

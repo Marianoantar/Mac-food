@@ -7,6 +7,7 @@ import { Producto_model } from '../../core/interfaces/productos';
 import { ContadorCantidadComponent } from '../../core/components/contador-cantidad/contador-cantidad.component';
 import { CarroService } from '../../core/services/carro.service';
 import { FormsModule } from '@angular/forms';
+import { PerfilService } from '../../core/services/perfil.service';
 
 @Component({
   selector: 'app-articulo',
@@ -21,6 +22,7 @@ export class ArticuloComponent {
   tabsService = inject(TabsService);
   productoService = inject(ProductosService);
   carroService = inject(CarroService);
+  perfilService = inject(PerfilService);
 
 
   producto?:Producto_model;
@@ -50,7 +52,7 @@ export class ArticuloComponent {
   ngOnInit(): void {
     this.headerService.titulo.set ('Articulo');
     this.tabsService.seleccion.set('ninguno');
-    
+    if(localStorage.getItem('token')) this.perfilService.admin.set(true);
   }
 
   agregarAlCarrito(){

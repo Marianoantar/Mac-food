@@ -192,6 +192,7 @@ h2{
 }
 
 dialog {
+    margin: 10svh auto;
     background-color: var(--color_principal_atenuado);
     border: unset;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.722); /* var(--color_principal)*/
@@ -200,13 +201,14 @@ dialog {
 
 dialog div {
     display: flex;
-    justify-items:baseline;
-    margin-top: 40px;
-    gap: 10px;
+    justify-items:last baseline;
+    font-size:small;
+    margin-top: 2svh;
+    gap: 5svw;
 }
 
 dialog p{
-    font-size: larger;
+    font-size:medium ;
     text-align: center;
 }
 dialog button {
@@ -214,7 +216,7 @@ dialog button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 130px;
+    width: 20svw;
     border: unset;
 }
 

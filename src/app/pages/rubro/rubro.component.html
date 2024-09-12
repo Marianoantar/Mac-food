@@ -1,19 +1,39 @@
 <section>
     <div id="contenedor-productos">
+      
         @if (perfilService.admin()){
-            <app-tarjeta-producto [producto]="ProductoNuevo"></app-tarjeta-producto>
+            <app-tarjeta-producto [producto]="productoNuevo" [routerLink]="['/editarProducto', 0, id_rubro]"></app-tarjeta-producto>
         }
-        @for (produ of this.productos(); track produ.id){
+        
+        @for (produ of edicionPrService.rubro().productos; track produ.id){
             <div>
                 <!-- <p>{{produ.nombre}}</p> -->
                 <app-tarjeta-producto [producto]="produ" [routerLink]="['/articulo', produ.id]"></app-tarjeta-producto>
                 @if (perfilService.admin()){
                     <div id="editar-tarjeta-producto">
-                        <button class="boton-chico" type="button">Eliminar</button>
-                        <button class="boton-chico" type="button">Modificar</button>
+                        <button 
+                            class="boton-chico" 
+                            type="button" 
+                            (click)="this.eliminarProducto(produ.id)">Eliminar
+                        </button>
+                      
+                        <button 
+                            class="boton-chico" 
+                            type="button" 
+                            (click)="this.editarProducto(produ.id, this.id_rubro)">Modificar
+                        </button>
                     </div>
                 }
             </div>
         }
     </div>
 </section>
+
+<dialog method="modal" #dialog>
+    <p>¿Quieres Borrar el producto?</p>
+    <p>si o borras no podras recuperarlo</p>
+    <div>
+        <button (click)="eliminarProductoDefinitivo(this.id_producto)"><span>Si</span></button>
+        <button (click)="cancelarEliminado()"><span>No</span></button>
+    </div>
+</dialog>

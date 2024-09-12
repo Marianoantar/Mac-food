@@ -23,3 +23,44 @@
     cursor: pointer;
     border-radius: 5px;
 }
+
+dialog {
+    margin: 10svh auto;
+    background-color: var(--color_principal_atenuado);
+    border: unset;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.722); /* var(--color_principal)*/
+    border-radius: 10px;
+}
+
+dialog div {
+    display: flex;
+    justify-items:last baseline;
+    font-size:small;
+    margin-top: 2svh;
+    gap: 5svw;
+}
+
+dialog p{
+    font-size:small;
+    text-align: center;
+}
+dialog button {
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20svw;
+    border: unset;
+}
+
+dialog button:first-of-type{
+    background-color: rgb(190, 251, 190);
+}
+
+dialog button:last-of-type{
+    background-color: rgb(251, 190, 190);
+}
+
+dialog button span:first-child {
+    font-size: x-large;
+}

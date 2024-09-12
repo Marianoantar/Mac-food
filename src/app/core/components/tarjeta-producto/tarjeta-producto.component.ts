@@ -13,4 +13,10 @@ export class TarjetaProductoComponent {
 
 @Input({required: true}) producto!:Producto_model
 
+constructor (){}
+
+getLastTwoDigits(id: number): number {
+  return id % 100;
+}
+
 }

@@ -1,0 +1,133 @@
+
+<section>
+    <div id="content">
+        <form #productForm="ngForm" (ngSubmit)="confirmGuardarDatos()">
+            <div>
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre"  [(ngModel)]="producto.nombre" #nombre="ngModel" required [minlength]="5" >
+                <p class="error" *ngIf="nombre.invalid && nombre.touched">Ingrese un nombre válido</p>
+                <!-- <p class="error" *ngIf="nombre.invalid && nombre.touched">Ingrese un nombre válido</p> -->
+            </div>
+            <div>
+                <label for="id">id</label>
+                <span><input type="number" name="id" id="id" [(ngModel)]="producto.id" #id="ngModel" required ></span>
+                <p class="error" *ngIf="errorId()">Ingrese un numero válido del 1 al 99</p>
+                <p class="error" *ngIf="idExiste()">El id ya existe, elegir otro</p>
+            </div>
+            <div>
+                <label for="precio">Precio</label>
+                <input type="number" name="precio" id="precio" [(ngModel)]="producto.precio" #precio="ngModel" number required >
+                <p class="error" *ngIf="precio.invalid && precio.touched">Ingrese un precio válido</p>
+            </div>
+            <div class="checkbox">
+                <div>
+                    <img src="./../../../../assets/icons/Vegetariano3.png" alt="Apto Vegano">
+                    <label for="esVegano">Vegano
+                        <input type="checkbox" name="esVegano" id="esVegano" [(ngModel)]="producto.esVegano" #esVegano="ngModel" required>
+                    </label>
+                    <!-- <p class="error" *ngIf="id.invalid && id.touched">Ingrese un id válido</p> -->
+                </div>
+                <div>
+                    <img src="./../../../../assets/icons/no_gluten.svg" alt="Apto Celiacos">
+                    <label for="esCeliaco">Celiaco
+                    <input type="checkbox" name="esCeliaco" id="esCeliaco" [(ngModel)]="producto.esCeliaco" #esCeliaco="ngModel" required>
+                    <!-- <p class="error" *ngIf="id.invalid && id.touched">Ingrese un id válido</p> -->
+                    </label>
+                </div>
+            </div>            
+            <div>
+                <label for="ingredientes">Ingredientes</label>
+                <input type="text" name="ingredientes" id="ingredientes" [(ngModel)]="producto.ingredientes" #ingredientes="ngModel" required>
+                <!-- <p class="error" *ngIf="id.invalid && id.touched">Ingrese un id válido</p> -->
+            </div>            
+            <div id="buscar-imagen">
+                <div>
+                    <p>Imagen</p>
+                    <button type="button">Buscar Imagen</button>
+                </div>
+                <div id="imagen">
+                    @if(producto.fotoUrl){
+                        <img [src]="producto.fotoUrl" alt="Imagen">
+                   } @else {
+                       <!-- <img [src]="./../../../../assets/img/sin-imagen.jpeg" alt="sinImagen"> -->
+                    }
+                </div>
+            </div>
+
+            <button type="submit">Guardar</button>
+
+        </form>
+
+
+        
+    </div>
+</section>
+
+<dialog method="modal" #dialog>
+    <p>¿Quieres guardar el producto?</p>
+    <!-- <p>si o borras no podras recuperarlo</p> -->
+    <div>
+        <button (click)="guardarDatos()"><span>Si</span></button>
+        <button (click)="cancelGuardarDatos()"><span>No</span></button>
+    </div>
+</dialog>
+
+
+<!-- <section>
+    <div id="content">
+        <form [formGroup]="productForm" (ngSubmit)="guardarDatos()">
+            <div>
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre" formControlName="nombre" required>
+            </div>
+            <div>
+                <label for="id">id</label>
+                <span> {{this.id_rubro}}<input type="text" name="id" id="id" formControlName="id" required></span>
+            </div>
+            <div>
+                <label for="precio">Precio</label>
+                <input type="number" name="precio" id="precio" formControlName="precio" required>
+            </div>
+            <div class="checkbox">
+                <div>
+                    <img src="./../../../../assets/icons/Vegetariano3.png" alt="Apto Vegano">
+                    <label for="esVegano">Vegano
+                        <input type="checkbox" name="esVegano" id="esVegano" formControlName="esVegano" required>
+                    </label>
+                </div>
+                <div>
+                    <img src="./../../../../assets/icons/no_gluten.svg" alt="Apto Celiacos">
+                    <label for="esCeliaco">Celiaco
+                    <input type="checkbox" name="esCeliaco" id="esCeliaco" formControlName="esCeliaco" required>
+                    </label>
+                </div>
+            </div>            
+            <div>
+                <label for="ingredientes">Ingredientes</label>
+                <input type="text" name="ingredientes" id="ingredientes" formControlName="ingredientes" required>
+            </div>            
+            <div id="buscar-imagen">
+                <div>
+                    <p>Imagen</p>
+                    <button type="button">Buscar Imagen</button>
+                </div>
+                <div id="imagen">
+                    @if(producto.fotoUrl){
+                        <img [src]="producto.fotoUrl" alt="Imagen">
+                   } @else {
+                    }
+                </div>
+            </div>
+
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
+</section> -->
+
+<!-- id: number;
+nombre: string;
+precio: number;
+esVegano: boolean;
+esCeliaco: boolean;
+ingredientes: string;
+fotoUrl: string; -->
