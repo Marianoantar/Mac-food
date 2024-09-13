@@ -109,8 +109,8 @@ button:disabled{
 }
 
 .error{
-    background-color: var(--color_fondo_Principal);
-    color: rgb(162, 160, 160);
+    background-color: var(--color_fondo_error);
+    color: rgb(254, 251, 251);
     font-weight: bold;
     margin: -5px 0 0 0px;
     text-align: center;

@@ -8,6 +8,7 @@
   --color_principal_trans:rgba(203, 227, 245, 0.715);
   --color_principal_disabled:rgb(214, 214, 215);
   --color_fondo_disabled:rgb(221, 197, 164);
+  --color_fondo_error: rgb(76, 122, 93);
 }
 
 .margen-chico{
