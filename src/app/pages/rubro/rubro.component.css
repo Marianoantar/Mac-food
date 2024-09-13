@@ -8,10 +8,14 @@
 }
 
 #editar-tarjeta-producto{
-    margin-top: 5px;
+    margin-top: 3px;
     display: flex;
     align-items: right;
-    justify-content: right;
+    justify-content: space-between;
+}
+
+#editar-tarjeta-producto #infoId p{
+    font-size: small;
 }
 
 .boton-chico{

@@ -11,17 +11,22 @@
                 <app-tarjeta-producto [producto]="produ" [routerLink]="['/articulo', produ.id]"></app-tarjeta-producto>
                 @if (perfilService.admin()){
                     <div id="editar-tarjeta-producto">
-                        <button 
-                            class="boton-chico" 
-                            type="button" 
-                            (click)="this.eliminarProducto(produ.id)">Eliminar
-                        </button>
-                      
-                        <button 
-                            class="boton-chico" 
-                            type="button" 
-                            (click)="this.editarProducto(produ.id, this.id_rubro)">Modificar
-                        </button>
+                        <div id="infoId">
+                            <p>id Producto: {{produ.id}}</p>
+                        </div>
+                        <div id="botones">
+                            <button 
+                                class="boton-chico" 
+                                type="button" 
+                                (click)="this.eliminarProducto(produ.id)">Eliminar
+                            </button>
+                          
+                            <button 
+                                class="boton-chico" 
+                                type="button" 
+                                (click)="this.editarProducto(produ.id, this.id_rubro)">Modificar
+                            </button>
+                        </div>
                     </div>
                 }
             </div>

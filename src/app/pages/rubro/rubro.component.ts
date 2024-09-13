@@ -30,7 +30,6 @@ export class RubroComponent {
 
   public id_rubro: number = 0;
   public id_producto: number = 0;
-  // public productos:WritableSignal<Producto_model[]> = signal ([]);
   public productoNuevo: Producto_model;
 
   constructor(){
@@ -40,7 +39,7 @@ export class RubroComponent {
       precio: 0,
       esVegano: false,
       esCeliaco: false,
-      ingredientes: '',
+      ingredientes: [],
       fotoUrl: './assets/img/signo-interrogacion.avif'
     };
   }

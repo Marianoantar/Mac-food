@@ -32,9 +32,13 @@ export class EdicionProductoComponent implements OnInit {
   public productos: Producto_model[]; 
   public productoNuevo: Producto_model; 
   public producto: Producto_model; 
-  //  * "rubro" es un signal que contiene toda la informacion del rubro o categria y tambien contiene a 'porductos'
-  // *  "productos" es el array donde pertenece 'producto'
-  // * "producto"  es el objeto a editar
+  public ingredientesString: string= "";
+  public ingredientesArray: string[] = [];
+
+  //  ingredientes es para tomar datos en string luego se pasan a array
+  //  "rubro" es un signal que contiene toda la informacion del rubro o categria y tambien contiene a 'porductos'
+  //  "productos" es el array donde pertenece 'producto'
+  //  "producto"  es el objeto a editar
 
   constructor(private formBuilder: FormBuilder) {
     // * Inicializacion de variables y objetos
@@ -44,13 +48,11 @@ export class EdicionProductoComponent implements OnInit {
       precio: 0,
       esVegano: false,
       esCeliaco: false,
-      ingredientes: '',
+      ingredientes: [''],
       fotoUrl: './assets/img/signo-interrogacion.avif'
     };
     this.producto = this.productoNuevo;
     this.productos = this.edicionPrService.rubro().productos; 
-    // console.log(this.productos);
-
 
     // * RECUPERA PARAMETROS
     this.route.params.subscribe(param => {
@@ -66,11 +68,16 @@ export class EdicionProductoComponent implements OnInit {
         } else {
           //  EDICION
           this.headerService.titulo.set ('Edición de producto');
-          //  Cargar this.producto con los datos del producto a modificar
+          // *  Cargar this.producto con los datos del producto a modificar
           const busqueda = this.productos.find(producto => producto.id === this.id_producto)
           if (busqueda) this.producto = busqueda;
-          //* REDUCIR EL ID de producto para luego volverlo a incrementar
-          //* de esta manera queda solamente un numero del 1 al 99
+          // * preparando this.producto para formulario
+          // carga this.ingredientesString con los ingredientes
+          this.ingredientesString = this.producto.ingredientes.join(', ');
+          // * preparando this.ingredientesArray con los ingredientes
+          this.ingredientesArray = this.ingredientesString.split(', ');
+          // REDUCIR EL ID de producto para luego volverlo a incrementar
+          // de esta manera queda solamente un numero del 1 al 99
           this.producto.id = this.producto.id - (this.id_rubro * 100);
 
         }
@@ -94,11 +101,9 @@ export class EdicionProductoComponent implements OnInit {
       return
     } else this.errorId.set(false);
 
-    // * Convertir ID segun Rubro
-    this.producto.id = this.id_rubro * 100 + this.producto.id;
-
+    
     //? EXISTE ID???
-    const idEncontrados = this.productos.filter(producto => producto.id == this.producto.id);
+    const idEncontrados = this.productos.filter(producto => producto.id == this.id_rubro * 100 + this.producto.id);
     if(this.id_producto===0 && idEncontrados.length >= 1) {
       this.idExiste.set(true); 
       return;      
@@ -109,11 +114,14 @@ export class EdicionProductoComponent implements OnInit {
       this.errorId.set(true);
       return;
     }
-
+    
+    // * Convertir ID segun Rubro
+    this.producto.id = this.id_rubro * 100 + this.producto.id;
+    
     //* Confirmar Guardado
     this.dialog.nativeElement.showModal();
-
   }
+
 
   cancelGuardarDatos() {
     this.dialog.nativeElement.close();
@@ -121,19 +129,26 @@ export class EdicionProductoComponent implements OnInit {
   }
   
   async guardarDatos() {
+    // cierra dialogo
     this.dialog.nativeElement.close();
 
-    //* Transfiere prooducto a productos
+    // Convierte ingredientes de string a array
+    this.ingredientesArray = this.ingredientesString.split(',').map((ingrediente: string) => ingrediente.trim());
+    this.producto.ingredientes = this.ingredientesArray;
+    
+
+    //? Es PRODUCTO NUEVO o EDICION???
     if (this.id_producto === 0) {
-      // Pproducto nuevo - Ejecuta Post 
+      // * Producto nuevo Ejecuta POST
+      //Ejecuta Post
       this.edicionPrService.post(this.producto);
       
     } else {
-      // Producto actualiizado - Ejecuta Put
+      // * Producto actualizado  Ejecuta PUT
       this.edicionPrService.put(this.id_producto, this.producto);
     
     }
-    // //* Actualizar Rubro
+    //? Actualizar Rubro
     await this.edicionPrService.actualizarRubro(this.id_rubro);
 
     // //* Volver al Rubro

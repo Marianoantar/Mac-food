@@ -4,6 +4,6 @@ export interface Producto_model {
     precio: number;
     esVegano: boolean;
     esCeliaco: boolean;
-    ingredientes: string;
+    ingredientes: string[];
     fotoUrl: string;
 }

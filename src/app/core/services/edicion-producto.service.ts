@@ -20,8 +20,6 @@ export class EdicionProductoService implements OnInit{
   }
 
   async actualizarRubro(id:number): Promise<void>{
-    // const res = await fetch("./assets/data/database.json"); // NO EXISTE MAS EL ARCHIVO EN APP
-    // const res = await fetch("http://localhost:3000/product"); // PRUEBA ARCHIVO EN SERVIDOR LOCAL
     const res = await fetch(this.serverVar.urlServer + "/product"); // ARCHIVO EN SERVIDOR (NUBE 
 
     const resJson:Categoria_model[] = await res.json();
@@ -78,10 +76,4 @@ export class EdicionProductoService implements OnInit{
       
     }
   }
-
-  // enviarDatosApi() {
-  //   // código para enviar los cambios al API
-  //   console.log(this.rubro())
-
-  // }
 }

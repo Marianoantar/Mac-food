@@ -5,7 +5,7 @@
         <img *ngIf="producto.esVegano" src="./../../../../assets/icons/Vegetariano3.png" alt="Apto Vegano">
     </div>
     <div id="detalles">
-        <h4>{{producto.nombre}} - id:{{getLastTwoDigits(producto.id)}}</h4>
+        <h4>{{producto.nombre}}</h4>
         <ul>
             @for(ingrediente of producto.ingredientes; track ingrediente){
                 <li>{{ingrediente}}</li>
