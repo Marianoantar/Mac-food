@@ -43,7 +43,8 @@
             <div id="buscar-imagen">
                 <div>
                     <p>Imagen</p>
-                    <button type="button">Buscar Imagen</button>
+                    <input type="file" name="imagen" id="imagen" (change)="onFileSelected($event)" multiple />
+                    <button type="button" (click)="onUpload()">Subir Imagen</button>
                 </div>
                 <div id="imagen">
                     @if(producto.fotoUrl){
@@ -73,61 +74,4 @@
 </dialog>
 
 
-<!-- <section>
-    <div id="content">
-        <form [formGroup]="productForm" (ngSubmit)="guardarDatos()">
-            <div>
-                <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" id="nombre" formControlName="nombre" required>
-            </div>
-            <div>
-                <label for="id">id</label>
-                <span> {{this.id_rubro}}<input type="text" name="id" id="id" formControlName="id" required></span>
-            </div>
-            <div>
-                <label for="precio">Precio</label>
-                <input type="number" name="precio" id="precio" formControlName="precio" required>
-            </div>
-            <div class="checkbox">
-                <div>
-                    <img src="./../../../../assets/icons/Vegetariano3.png" alt="Apto Vegano">
-                    <label for="esVegano">Vegano
-                        <input type="checkbox" name="esVegano" id="esVegano" formControlName="esVegano" required>
-                    </label>
-                </div>
-                <div>
-                    <img src="./../../../../assets/icons/no_gluten.svg" alt="Apto Celiacos">
-                    <label for="esCeliaco">Celiaco
-                    <input type="checkbox" name="esCeliaco" id="esCeliaco" formControlName="esCeliaco" required>
-                    </label>
-                </div>
-            </div>            
-            <div>
-                <label for="ingredientes">Ingredientes</label>
-                <input type="text" name="ingredientes" id="ingredientes" formControlName="ingredientes" required>
-            </div>            
-            <div id="buscar-imagen">
-                <div>
-                    <p>Imagen</p>
-                    <button type="button">Buscar Imagen</button>
-                </div>
-                <div id="imagen">
-                    @if(producto.fotoUrl){
-                        <img [src]="producto.fotoUrl" alt="Imagen">
-                   } @else {
-                    }
-                </div>
-            </div>
 
-            <button type="submit">Guardar</button>
-        </form>
-    </div>
-</section> -->
-
-<!-- id: number;
-nombre: string;
-precio: number;
-esVegano: boolean;
-esCeliaco: boolean;
-ingredientes: string;
-fotoUrl: string; -->

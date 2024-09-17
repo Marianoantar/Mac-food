@@ -5,6 +5,9 @@ import { HeaderService } from '../../core/services/header.service';
 import { Producto_model } from '../../core/interfaces/productos';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+// import { HttpClient } from '@angular/common/http';
+import { FilesService } from '../../core/services/files.service';
+import { ServerVarService } from '../../core/services/server-var.service';
 
 @Component({
   selector: 'app-edicion-producto',
@@ -24,6 +27,10 @@ export class EdicionProductoComponent implements OnInit {
   private headerService = inject(HeaderService);
   private route = inject(ActivatedRoute);
   router = inject(Router);
+  // private http = inject(HttpClient);
+  private fileService = inject(FilesService);
+  serverVar = inject(ServerVarService);
+
   @ViewChild('dialog') dialog!: ElementRef<HTMLDialogElement>;
 
   
@@ -34,6 +41,7 @@ export class EdicionProductoComponent implements OnInit {
   public producto: Producto_model; 
   public ingredientesString: string= "";
   public ingredientesArray: string[] = [];
+  selectedFile: File | null = null;
 
   //  ingredientes es para tomar datos en string luego se pasan a array
   //  "rubro" es un signal que contiene toda la informacion del rubro o categria y tambien contiene a 'porductos'
@@ -155,5 +163,47 @@ export class EdicionProductoComponent implements OnInit {
     this.router.navigate(['/categoria', this.id_rubro]);
   }
 
+  
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+    
+  }
+
+  async onUpload(): Promise<void> {
+    if (this.selectedFile) {
+      try {
+        const response = await this.fileService.uploadFile(this.selectedFile);
+        console.log('Nuevo nombre del archivo:', response.filename);
+        this.producto.fotoUrl = this.serverVar.urlServer + '/uploads/' + response.filename;
+      } catch (error) {
+        console.error('Error al subir el archivo:', error);
+      }
+    }
+  }
 
 }
+
+
+  // getFile(event: Event): void {
+  //   const target = event.target as HTMLInputElement;
+  //   const files: FileList | null = target.files ;
+  //   if ( files !== null && files!.length > 0 ) {
+  //     const formData = new FormData();
+
+  //     // Array.prototype.forEach.call(files, (file: File) => {
+  //     //   formData.append("files", file);
+  //     // });
+
+  //     // this.fileService.upload(formData).then((res) => {
+  //     //   console.log(res)
+      
+  //     for (let i = 0; i < files.length; i++) {
+  //       formData.append("files", files[i]);
+  //     }
+  
+  //     this.fileService.upload(formData).then((res) => {
+  //       console.log('resultado devuelto: ',res);
+
+  //     })
+  //   };
+  // }
