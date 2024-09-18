@@ -12,7 +12,7 @@ export class FilesService {
   serverVar = inject(ServerVarService);
   // private http = inject (HttpClient);
 
-  private baseURL = this.serverVar.urlLocalServer + '/files/upload';
+  private baseURL = this.serverVar.urlServer + '/files/upload';
 
   constructor() { }
 
