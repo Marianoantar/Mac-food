@@ -174,6 +174,7 @@ export class EdicionProductoComponent implements OnInit {
       try {
         const response = await this.fileService.uploadFile(this.selectedFile);
         console.log('Nuevo nombre del archivo:', response.filename);
+        // aaa
         this.producto.fotoUrl = this.serverVar.urlServer + '/uploads/' + response.filename;
       } catch (error) {
         console.error('Error al subir el archivo:', error);
