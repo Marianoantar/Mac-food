@@ -175,7 +175,7 @@ export class EdicionProductoComponent implements OnInit {
         const response = await this.fileService.uploadFile(this.selectedFile);
         console.log('Nuevo nombre del archivo:', response.filename);
         // aaa
-        this.producto.fotoUrl = this.serverVar.urlServer + '/uploads/' + response.filename;
+        this.producto.fotoUrl = this.serverVar.urlServer + '/img/' + response.filename;
       } catch (error) {
         console.error('Error al subir el archivo:', error);
       }
@@ -184,27 +184,3 @@ export class EdicionProductoComponent implements OnInit {
 
 }
 
-
-  // getFile(event: Event): void {
-  //   const target = event.target as HTMLInputElement;
-  //   const files: FileList | null = target.files ;
-  //   if ( files !== null && files!.length > 0 ) {
-  //     const formData = new FormData();
-
-  //     // Array.prototype.forEach.call(files, (file: File) => {
-  //     //   formData.append("files", file);
-  //     // });
-
-  //     // this.fileService.upload(formData).then((res) => {
-  //     //   console.log(res)
-      
-  //     for (let i = 0; i < files.length; i++) {
-  //       formData.append("files", files[i]);
-  //     }
-  
-  //     this.fileService.upload(formData).then((res) => {
-  //       console.log('resultado devuelto: ',res);
-
-  //     })
-  //   };
-  // }
