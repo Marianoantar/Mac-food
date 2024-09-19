@@ -7,13 +7,13 @@ form, form div{
 }
 
 form{
-    gap:20px;
+    gap:10px;
     margin: 30px 30px 0 30px; 
     
 }
 
 form div{
-    margin: 12px 30px 0 30px; 
+    margin: 12px 30px 0 25px; 
     gap:5px;
 }
 
@@ -33,8 +33,27 @@ input:focus{
     border-radius: 5px;
 }
 
+div .id-precio {
+    margin-left: 10px;
+    display: flex;
+    flex-wrap:nowrap;
+    align-items:baseline;
+    flex-direction:row;
+    justify-content: space-between;
+    gap:20px;
+}
+
+div .id-precio div{
+    width: 25%;
+}
+
+div .id-precio div input{
+    max-inline-size: 120%;
+}
+
 div .checkbox{
     margin:10px;
+    margin-top:30px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -67,6 +86,28 @@ div #buscar-imagen{
     margin-top:20px
     
 }
+
+div #buscar-imagen div{
+    width: 50%;
+    justify-content: flex-start;
+}
+
+div #buscar-imagen div input{
+    /* background-color: var(--color_principal_atenuado); */
+    width:80%;
+    border: none;
+    outline: none !important;
+    border-radius: 10px;
+}
+
+
+/* input#file-upload-button{
+    background-color: var(--color_fondo_Principal);
+
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+} */
 
 div #buscar-imagen #imagen{
     margin: 0;
