@@ -174,7 +174,8 @@ export class EdicionProductoComponent implements OnInit {
       try {
         const response = await this.fileService.uploadFile(this.selectedFile);
         console.log('Nuevo nombre del archivo:', response.filename);
-        // aaa
+        // Se cambió en la ubicacion de la imagen agregando a la ruta
+        // solamente '/img/' que reemplaza '/static/uploads/
         this.producto.fotoUrl = this.serverVar.urlServer + '/img/' + response.filename;
       } catch (error) {
         console.error('Error al subir el archivo:', error);
