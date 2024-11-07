@@ -1,6 +1,7 @@
 
 #container {
-    height: 80px;
+    height: 15vw;
+    max-height: 90px;
     display: flex;
     /* background-color: var(--color_principal); */
     background-color: var(--color_principal_atenuado);

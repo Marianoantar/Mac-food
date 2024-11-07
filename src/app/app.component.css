@@ -1,15 +1,33 @@
+#outside{
+    display: flex;
+    justify-content: center;
+    /* text-align: center; */
+}
+
 #container{
+    width: 100%;
+    max-width: 667px;
     height: 100svh;
+    background-color: white;
     overflow: hidden;
     /* display: flex;
     flex-direction: column; */
     display: grid;
     grid-template-rows: auto 1fr auto;
+    /* display: inline-block;
+    margin: 0 auto; */
+}
+
+@media(667px < width) {
+    #outside{
+        background-image: url(../assets/img/Fachada.jpg);
+        background-size: cover;       
+    }
 }
 
 main{
     flex: 1;
-    overflow-y: scroll;
+    overflow:auto;
 }
 
 app-tabs{
