@@ -1,35 +1,31 @@
-#outside{
+#outside {
     display: flex;
     justify-content: center;
-    /* text-align: center; */
-}
-
-#container{
+  }
+  
+  #container {
     width: 100%;
     max-width: 667px;
-    height: 100svh;
+    height: 100vh;
     background-color: white;
     overflow: hidden;
-    /* display: flex;
-    flex-direction: column; */
     display: grid;
     grid-template-rows: auto 1fr auto;
-    /* display: inline-block;
-    margin: 0 auto; */
-}
-
-@media(667px < width) {
-    #outside{
-        background-image: url(../assets/img/Fachada.jpg);
-        background-size: cover;       
+  }
+  
+  @media (min-width: 668px) {
+    #outside {
+      background-image: url(../assets/img/Fachada.jpg);
+      background-size: cover;
     }
-}
-
-main{
+  }
+  
+  main {
     flex: 1;
-    overflow:auto;
-}
-
-app-tabs{
+    overflow: auto;
+  }
+  
+  app-tabs {
     margin-top: auto;
-}
+  }
+  
